@@ -8,22 +8,24 @@
             <li class="poll-result">
                 <div class="poll-result-input-container">
                   <input id="answer-{{key}}-{{../block_id}}" type="radio" disabled {{#if choice}}checked{{/if}} />
-                </div>
-                {{~#if ../any_img~}}
-                    <div class="poll-image result-image">
-                        <label for="answer-{{key}}-{{../block_id}}" class="poll-image-label">
-                            {{#if img}}
-                              <img src="{{img}}" alt="{{img_alt}}"/>
-                            {{/if}}
-                        </label>
-                    </div><div class="percentage-gauge-background"></div>
-                {{~/if~}}
-                <div class="percentage-gauge-container">
-                  <div class="percentage-gauge" style="width:{{percent}}%;"></div>
-                  <label class="poll-answer-label" for="answer-{{key}}-{{../block_id}}">{{{answer}}}</label>
-                </div>
-                <div class="poll-percent-container">
-                    <span class="poll-percent-display{{#if leader}} poll-top-choice{{/if}}">{{percent}}%</span>
+                  <div>
+                    {{~#if ../any_img~}}
+                        <div class="poll-image result-image">
+                            <label for="answer-{{key}}-{{../block_id}}" class="poll-image-label">
+                                {{#if img}}
+                                <img src="{{img}}" alt="{{img_alt}}"/>
+                                {{/if}}
+                            </label>
+                        </div><div class="percentage-gauge-background"></div>
+                    {{~/if~}}
+                    <div class="percentage-gauge-container">
+                        <div class="percentage-gauge" style="width:{{percent}}%;"></div>
+                        <label class="poll-answer-label" for="answer-{{key}}-{{../block_id}}">{{{answer}}}</label>
+                    </div>
+                        <div class="poll-percent-container">
+                            <span class="poll-percent-display{{#if leader}} poll-top-choice{{/if}}">{{percent}}%</span>
+                        </div>
+                    </div>
                 </div>
             </li>
         {{/each}}
@@ -33,7 +35,6 @@
           {{interpolate (ngettext "Results gathered from {total} respondent." "Results gathered from {total} respondents." total) total=total}}
         </div>
         {{#if feedback}}
-            <hr />
             <h3 class="poll-header">{{gettext "Feedback" }}</h3>
             <div class="poll-feedback">
                 {{{feedback}}}

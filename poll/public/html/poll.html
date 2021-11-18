@@ -17,17 +17,19 @@
               <div class="poll-input-container">
                 <input type="radio" name="choice" id="poll-{{ block_id }}-answer-{{ key }}" value="{{ key }}"
                     {% if choice == key %}checked{% endif %}/>
+                  <label class="poll-answer-text" for="poll-{{ block_id }}-answer-{{ key }}">
+                  {% if any_img %}
+                    <div class="poll-image">
+                      <label for="poll-{{ block_id }}-answer-{{ key }}" class="poll-image-label">
+                        {% if value.img %}
+                          <img src="{{ value.img }}"/>
+                        {% endif %}
+                      </label>
+                    </div>
+                  {% endif %}
+                  <span>{{ value.label|safe }}</span>
+                </label>
               </div>
-              {% if any_img %}
-                <div class="poll-image">
-                  <label for="poll-{{ block_id }}-answer-{{ key }}" class="poll-image-label">
-                    {% if value.img %}
-                      <img src="{{ value.img }}"/>
-                    {% endif %}
-                  </label>
-                </div>
-              {% endif %}
-              <label class="poll-answer-text" for="poll-{{ block_id }}-answer-{{ key }}">{{ value.label|safe }}</label>
             </div>
           {% endfor %}
         </div>
@@ -61,7 +63,14 @@
   </div>
       {% if can_view_private_results %}
       <div class="view-results-button-wrapper">
-        <button class="view-results-button">{% trans 'View results' %}</button>
+        <button class="view-results-button">
+          <div class="btn-content">
+            <svg width="16" height="16">
+                <use xlink:href="#info-circle-icon"></use>
+            </svg>
+            {% trans 'View results' %}
+          </div>
+        </button>
       </div>
     {% endif %}
 </div>
@@ -73,6 +82,6 @@
       <p class="error-message poll-hidden"></p>
     </div>
   {% else %}
-    <p>{% trans "Student data and results CSV available for download in the LMS." %}</p>
+    <p class="export-message">{% trans "Student data and results CSV available for download in the LMS." %}</p>
   {% endif %}
 {% endif %}

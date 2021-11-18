@@ -12,32 +12,40 @@
         </li>
         {% if not multiquestion %}
             <li class="field comp-setting-entry is-set">
-                <h2><label for="poll-question-editor">{% trans 'Question/Prompt' %}</label></h2>
-                {% blocktrans with link_start='<a href="//daringfireball.net/projects/markdown/syntax" target="_blank">' link_end='</a>' %}
-                    {{link_start}}Markdown Syntax{{link_end}} is supported.
-                {% endblocktrans %}
-                <div id="poll-question-editor-container">
-                    <textarea class="input setting-input" name="question" id="poll-question-editor"
-                              aria-describedby="poll-question-editor-help">{{question}}</textarea>
+                <div class="wrapper-comp-setting">
+                    <label class="label setting-label poll-setting-label" for="poll-question-editor">{% trans 'Question/Prompt' %}</label>
+                    <div class="sublabel">
+                        {% blocktrans with link_start='<a href="//daringfireball.net/projects/markdown/syntax" target="_blank">' link_end='</a>' %}
+                            {{link_start}}Markdown Syntax{{link_end}} is supported.
+                        {% endblocktrans %}
+                    </div>
+                    <div id="poll-question-editor-container">
+                        <textarea class="input setting-input" name="question" id="poll-question-editor"
+                                aria-describedby="poll-question-editor-help">{{question}}</textarea>
+                    </div>
+                    <span class="tip setting-help" id="poll-question-editor-help">{% trans 'Enter the prompt for the user.' %}</span>
                 </div>
-                <span class="tip setting-help" id="poll-question-editor-help">{% trans 'Enter the prompt for the user.' %}</span>
             </li>
         {% endif %}
         <li class="field comp-setting-entry is-set">
-            <h2><label for="poll-feedback-editor">{% trans 'Feedback' %}</label></h2>
-            {% blocktrans with link_start='<a href="//daringfireball.net/projects/markdown/syntax" target="_blank">' link_end='</a>' %}
-                {{link_start}}Markdown Syntax{{link_end}} is supported.
-            {% endblocktrans %}
-            <div id="poll-feedback-editor-container">
-                <textarea class="input setting-input" name="feedback" id="poll-feedback-editor"
-                          aria-describedby="poll-feedback-editor-help">{{feedback}}</textarea>
+            <div class="wrapper-comp-setting">
+                <label class="label setting-label poll-setting-label" for="poll-feedback-editor">{% trans 'Feedback' %}</label>
+                <div class="sublabel">
+                    {% blocktrans with link_start='<a href="//daringfireball.net/projects/markdown/syntax" target="_blank">' link_end='</a>' %}
+                        {{link_start}}Markdown Syntax{{link_end}} is supported.
+                    {% endblocktrans %}
+                </div>
+                <div id="poll-feedback-editor-container">
+                    <textarea class="input setting-input" name="feedback" id="poll-feedback-editor"
+                            aria-describedby="poll-feedback-editor-help">{{feedback}}</textarea>
+                </div>
+                <span class="tip setting-help" id="poll-feedback-editor-help">
+                    {% blocktrans %}
+                        This text will be displayed for the user as some extra feedback after they have
+                        submitted their response to the poll.
+                    {% endblocktrans %}
+                </span>
             </div>
-            <span class="tip setting-help" id="poll-feedback-editor-help">
-                {% blocktrans %}
-                    This text will be displayed for the user as some extra feedback after they have
-                    submitted their response to the poll.
-                {% endblocktrans %}
-            </span>
         </li>
         <li class="field comp-setting-entry is-set">
             <div class="wrapper-comp-setting">
@@ -66,7 +74,7 @@
                 {% endblocktrans %}
             </span>
         </li>
-        <li class="field comp-setting-entry is-set">
+        <li class="field comp-setting-entry is-set note">
             <p>
                 <strong>{% trans 'Notes:' %}</strong>
                 {% blocktrans %}
