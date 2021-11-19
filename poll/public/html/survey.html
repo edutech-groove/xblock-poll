@@ -8,7 +8,7 @@
             <table class="survey-table" role="presentation">
                 <thead role="presentation">
                   <tr role="group">
-                      <td></td>
+                      <th>Questions</th>
                       {% for answer, label in answers %}
                         <th role="presentation" id="poll-{{block_id}}-{{answer}}" class="survey-answer" scope="col">{{label}}</th>
                       {% endfor %}
@@ -16,20 +16,22 @@
                 </thead>
             {% for key, question in questions %}
                 <tr class="survey-row" role="group" aria-labelledby="poll-{{block_id}}-{{key}}">
-                    <th role="presentation" id="poll-{{block_id}}-{{key}}" class="survey-question" scope="row">
-                        {% if question.img %}
-                            <div class="poll-image-td">
-                                <img src="{{question.img}}" alt="{{question.img_alt|default_if_none:''}}"/>
-                            </div>
-                        {% endif %}
-                      {{question.label|safe}}
-                    </th>
+                    <td role="presentation" id="poll-{{block_id}}-{{key}}" class="survey-question" scope="row">
+                        <div class="question">
+                            {% if question.img %}
+                                <div class="poll-image-td">
+                                    <img src="{{question.img}}" alt="{{question.img_alt|default_if_none:''}}"/>
+                                </div>
+                            {% endif %}
+                            {{question.label|safe}}
+                        </div>
+                    </td>
                 {% for answer, label in answers %}
                     <td role="presentation" class="survey-option" headers="poll-{{block_id}}-{{key}} poll-{{block_id}}-{{answer}}">
                         {% with answer_count=forloop.counter %}
                             {% for answer, label in answers %}
                                 {% if forloop.counter == answer_count %}
-                                    <label for="{{block_id}}-{{key}}-{{answer_count}}">
+                                    <div class="input">
                                         <input type="radio"
                                                name="{{key}}"
                                                id="{{usage_id}}-{{key}}-{{forloop.counter}}"
@@ -40,8 +42,9 @@
                                                aria-label="{{label|safe}}"
                                                {% endif %}
                                         />
+                                        <label for="{{usage_id}}-{{key}}-{{forloop.counter}}"></label>
                                         <span class="visible-mobile-only">{{label}}</span>
-                                    </label>
+                                    </div>
                                 {% endif %}
                             {% endfor %}
                         {% endwith %}
@@ -70,7 +73,14 @@
 
         {% if can_view_private_results %}
             <div class="view-results-button-wrapper">
-                <button class="view-results-button">{% trans "View results" %}</button>
+                <button class="view-results-button">
+                    <div class="btn-content">
+                      <svg width="16" height="16">
+                          <use xlink:href="#info-circle-icon"></use>
+                      </svg>
+                      {% trans "View results" %}
+                    </div>
+                </button>
             </div>
         {% endif %}
     </div>
