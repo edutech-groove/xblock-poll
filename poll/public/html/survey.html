@@ -87,11 +87,29 @@
 </div>
 {% if can_view_private_results %}
   {% if not studio_edit %}
-    <div class="export-results-button-wrapper">
-      <button class="export-results-button">{% trans "Export results to CSV" %}</button>
-      <button disabled class="download-results-button">{% trans "Download CSV" %}</button>
-      <p class="error-message poll-hidden"></p>
+  <div class="export-results-button-wrapper">
+    <div class="btn-wrapper">
+      <button class="export-results-button">
+        <div class="btn-content">
+          <svg width="18" height="16">
+            <use xlink:href="#export-icon"></use>
+          </svg>
+          {% trans "Export results to CSV" %}
+        </div>
+      </button>
     </div>
+    <div class="btn-wrapper">
+      <button disabled class="download-results-button">
+        <div class="btn-content">
+          <svg width="512" height="512">
+            <use xlink:href="#download-icon"></use>
+          </svg>
+          {% trans "Download CSV" %}
+        </div>
+      </button>
+    </div>
+    <p class="error-message poll-hidden"></p>
+  </div>
   {% else %}
     <p>{% trans "Student data and results CSV available for download in the LMS." %}</p>
   {% endif %}
